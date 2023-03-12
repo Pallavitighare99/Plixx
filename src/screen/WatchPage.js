@@ -83,6 +83,8 @@ function WatchPage() {
                             <source src={movie?.video} type="video/mp4"
                                 title={movie?.name} />
                         </video>
+                     
+                          
                     ) : (
                         <div className='w-full h-screen rounded-lg overflow-hidden relative'>
                             {
