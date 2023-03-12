@@ -6,7 +6,7 @@ import { FiMail, FiPhoneCall, FiMapPin } from 'react-icons/fi';
 function SubscriptionPage() {
   const monthlyPlan = {
     name: 'Monthly Plan',
-    price: '$9.99',
+    price: '₹99 / month',
     benefits: [
       'Access to all premium features for 30 days',
       '24/7 customer support',
@@ -15,7 +15,7 @@ function SubscriptionPage() {
 
   const yearlyPlan = {
     name: 'Yearly Plan',
-    price: '$99.99',
+    price: '₹499 / year',
     benefits: [
       'Access to all premium features for 365 days',
       '24/7 customer support',
