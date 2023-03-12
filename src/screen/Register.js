@@ -12,6 +12,7 @@ import { LoginValidation, RegisterValidation } from '../components/Validation/Us
 import { InlineError } from '../components/Notifications/Error'
 import { useForm } from 'react-hook-form'
 import HalfLayout from '../layout/HalfLayout'
+import { SignInWithGoogle } from '../firebase/config'
 
 function Register() {
     const dispatch = useDispatch();
@@ -20,6 +21,12 @@ function Register() {
     const { isLoading, isError, userInfo, isSuccess } = useSelector((state) => state.userRegister);
 
     //validate user
+    const handleGoogleSignIn = () => {
+        SignInWithGoogle()
+    }
+
+    let googleInfo = JSON.parse(localStorage.getItem("userInfo"))
+    console.log(googleInfo)
 
     const {
         register,
@@ -35,10 +42,10 @@ function Register() {
     }
 
     useEffect(() => {
-        if (userInfo?.isAdmin) {
+        if (userInfo?.isAdmin || googleInfo?.isAdmin) {
             navigate("/dashboard");
         }
-        else if (userInfo) {
+        else if (userInfo || googleInfo) {
             navigate("/profile");
         }
         if (isSuccess) {
@@ -116,8 +123,16 @@ function Register() {
                             )
                         }
                     </button>
-                    <GoogleButton
-                    />
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className='bg-white flex flex-row justify-center items-center gap-4 text-black p-4 rounded-lg w-full'>
+                        <img
+                            src='/images/google.png'
+                            alt='google'
+                            className='w-6 h-6 object-contain'
+                        />
+                        Sign In with Google
+                    </button>
                     <p className='text-center text-border'>
                         Already have an account?{" "}
                         <Link to="/login" className='text-dryGray font-semibold ml-2'>

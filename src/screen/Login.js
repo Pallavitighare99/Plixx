@@ -115,10 +115,21 @@ function Login() {
                             )
                         }
                     </button>
-                    <GoogleButton
+                    {/* <GoogleButton
                         onClick={handleGoogleSignIn}
 
-                    />
+                    /> */}
+                    {/* a button ui in tailwind css for google login */}
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className='bg-white flex flex-row justify-center items-center gap-4 text-black p-4 rounded-lg w-full'>
+                        <img
+                            src='/images/google.png'
+                            alt='google'
+                            className='w-6 h-6 object-contain'
+                        />
+                        Sign In with Google
+                    </button>
                     <p className='text-center text-border'>
                         Don't have an account?{" "}
                         <Link to="/register" className='text-dryGray font-semibold ml-2'>
