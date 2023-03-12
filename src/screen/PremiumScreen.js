@@ -24,15 +24,15 @@ function SubscriptionPage() {
         '24/7 customer support',
       ],
     },
-    {
-      id: 3,
-      name: 'LifeTime Plan',
-      price: '₹1499 / Life',
-      benefits: [
-        'Access to all premium features for 365 days',
-        '24/7 customer support',
-      ],
-    },
+    // {
+    //   id: 3,
+    //   name: 'LifeTime Plan',
+    //   price: '₹1499 / Life',
+    //   benefits: [
+    //     'Access to all premium features for 365 days',
+    //     '24/7 customer support',
+    //   ],
+    // },
 
   ]
 
@@ -41,7 +41,7 @@ function SubscriptionPage() {
     <Layout>
       <div className='min-height-screen container mx-auto px-2 my-6'>
         <Head title="Subscribe to our service" />
-        <div className='grid mg:grid-cols-1 lg:grid-cols-3 gap-6 lg:my-20 my-10 xl:gap-10'>
+        <div className='grid mg:grid-cols-1 items-center grid-cols-[30%_30%] gap-6 lg:my-20 my-10 xl:gap-10'>
           {
             subData.map((item) => (
               <div className='border border-border flex flex-col justify-center items-center p-5 bg-dry rounded-lg text-center hover:bg-main' key={item.id}>
