@@ -40,6 +40,7 @@ function Register() {
     const onSubmit = (data) => {
         dispatch(registerAction(data))
     }
+    // done
 
     useEffect(() => {
         if (userInfo?.isAdmin || googleInfo?.isAdmin) {
