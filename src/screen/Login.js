@@ -12,15 +12,21 @@ import { InlineError } from '../components/Notifications/Error'
 import { loginAction } from '../Redux/Actions/userAction'
 import  toast  from 'react-hot-toast'
 import HalfLayout from '../layout/HalfLayout'
-
+import { SignInWithGoogle } from '../firebase/config'
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const { isLoading, isError, userInfo, isSuccess } = useSelector((state) => state.userLogin);
 
-    //validate user
-
+    // create a function to handle Sign in with Google and get the user data from local storage
+    const handleGoogleSignIn = () => {
+        SignInWithGoogle()
+    }
+    
+    let googleInfo = JSON.parse(localStorage.getItem("userInfo"))
+    console.log(googleInfo)
+    
     const {
         register,
         handleSubmit,
@@ -35,10 +41,12 @@ function Login() {
     }
 
     useEffect(() => {
-        if (userInfo?.isAdmin) {
+        
+
+        if (userInfo?.isAdmin || googleInfo?.isAdmin) {
             navigate("/dashboard");
         }
-        else if (userInfo) {
+        else if (userInfo || googleInfo) {
             navigate("/profile");
         }
         if (isSuccess) {
@@ -50,7 +58,7 @@ function Login() {
             dispatch({ type: "USER_LOGIN_RESET" })
 
         }
-    }, [isSuccess, isError, userInfo, navigate, dispatch]);
+    }, [isSuccess, isError, userInfo, navigate, dispatch, googleInfo])
 
 
     return (
@@ -108,8 +116,7 @@ function Login() {
                         }
                     </button>
                     <GoogleButton
-                        onClick={console.log
-                            ("Google Button Clicked")}
+                        onClick={handleGoogleSignIn}
 
                     />
                     <p className='text-center text-border'>

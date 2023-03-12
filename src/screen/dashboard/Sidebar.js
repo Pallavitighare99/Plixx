@@ -70,12 +70,6 @@ function Sidebar({ children }) {
         ]
         ) : userInfo ? (
             [
-                
-            {
-                name: "Categories",
-                link: "/categories",
-                icon: HiViewGridAdd
-            },
             {
                 name: "Movies List",
                 link: "/movie-list",

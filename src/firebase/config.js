@@ -1,21 +1,42 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// import all stuff required for google Auth
-import {GoogleAuthProvider} from "firebase/auth"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import * as firebase from "firebase/app";
+import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import Axios from "../Redux/APIs/Axios";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCLTlwpEmyTXzwD2IP7ltdnMtTjnb6rhwA",
-  authDomain: "plixx-82c7d.firebaseapp.com",
-  projectId: "plixx-82c7d",
-  storageBucket: "plixx-82c7d.appspot.com",
-  messagingSenderId: "48747708183",
-  appId: "1:48747708183:web:988bf2b2525684f0bc4152",
-  measurementId: "G-9WR7KTYYHH"
-};
+firebase.initializeApp({
+  apiKey: "AIzaSyBzMPN0JitsvN7EeHP7PXOktk0IlhBjut8",
+  authDomain: "plixx-72d54.firebaseapp.com",
+  projectId: "plixx-72d54",
+  storageBucket: "plixx-72d54.appspot.com",
+  messagingSenderId: "749368615439",
+  appId: "1:749368615439:web:5c4fa72b219eaf7833397a"
+})
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+export const SignInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        Axios.post("/users/google", {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL
+        })
+        .then(async (res) => {
+          localStorage.setItem("userInfo", JSON.stringify(res.data))
+          toast.success("Login Success")
+        //  navigate to home page using window.location
+          window.location.href = "/"
+        })
+    })    
+    .catch((error) => {
+      console.log(error.stack)
+        toast.error(error.message)
+    })
+}
