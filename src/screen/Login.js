@@ -25,7 +25,6 @@ function Login() {
     }
     
     let googleInfo = JSON.parse(localStorage.getItem("userInfo"))
-    console.log(googleInfo)
     
     const {
         register,
