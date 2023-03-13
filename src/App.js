@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from 'react-router-dom'
 import AboutUs from "./screen/AboutUs";
 import Homescreen from "./screen/Homescreen";
@@ -32,8 +32,36 @@ function App() {
   Aos.init();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin)
+  // const [popup, setPopup] = useState(false);
+
+  // const handlePopup = () => {
+  //   setPopup(!popup);
+  // }
+
+  // if(!userInfo){  
+  //   setTimeout(() => {
+  //     setPopup(true); 
+  //     <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex flex-col justify-center items-center'>
+  //     <div className='bg-white w-11/12 md:w-1/2 lg:w-1/3 h-96 rounded-lg shadow-lg flex flex-col justify-center items-center'>
+  //         <div className='w-full h-1/2 flex flex-col justify-center items-center'>
+  //             <h1 className='text-2xl font-bold text-center'>Login With Google</h1>
+  //             <p className='text-sm text-center'>Login with your google account to access all the features of Plixx</p>
+  //         </div>
+  //         <div className='w-full h-1/2 flex flex-col justify-center items-center'>
+  //             <button className='bg-red-500 w-1/2 h-12 rounded-lg text-white font-bold text-lg'>Login</button>
+  //             <button onClick={handlePopup} className='text-red-500 w-1/2 h-12 rounded-lg text-lg'>Cancel</button>
+  //         </div>
+  //     </div>
+  // </div>
+  //   }, 1000);
+  // }
+
+  
+
 
   useEffect(()=>{
+  
+    
     dispatch(getCategoryAction());
     dispatch(moviesListAction({}));
     if(userInfo){
